@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:15.3
+    ports:
+      - 5432:5432
+    volumes:
+      - ./init-scripts:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: sophadb
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U root -d sophadb'"] # User, Database
+      interval: 5s
+      timeout: 30s
+      retries: 3
+    networks:
+      - sopha-network
+
+  sopha-app:
+    env_file:
+      - .env
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+    networks:
+      - sopha-network
+
+networks:
+  sopha-network:
+    name: sopha-network
+
+volumes:
+  postgres_data:

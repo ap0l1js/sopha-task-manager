@@ -60,13 +60,13 @@ export const CardModal = () => {
             </div>
           </>
         ) : (
-          <>
+          <div className="truncate p-2">
             <div className="flex gap-4 items-start">
               <Actions data={cardData} />
               <Header data={cardData} />
             </div>
 
-            <div className="w-full space-y-6">
+            <div className="space-y-6">
               <Description data={cardData} />
 
               <Tags data={cardData} />
@@ -81,7 +81,7 @@ export const CardModal = () => {
 
               <Logs items={auditLogsData ? auditLogsData : []} />
             </div>
-          </>
+          </div>
         )}
       </DialogContent>
     </Dialog>

@@ -8,8 +8,6 @@ export const CreatedBy = ({
 }: {
   authorData: OrganizationMembership;
 }) => {
-  console.log("authorData", authorData);
-
   return (
     <div className="flex items-start gap-x-3 w-full">
       <User className="h-5 w-5 mt-0.5 text-neutral-700" />

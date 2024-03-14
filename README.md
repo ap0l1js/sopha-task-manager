@@ -30,7 +30,7 @@ This project is a fullStack task manager.
 
 ### 🔗 Project live
 
-- [Feedin](https://feedin.vercel.app/)
+- [Sopha](https://sopha-task-manager.vercel.app)
 
 &nbsp;
 

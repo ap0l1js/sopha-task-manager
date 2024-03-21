@@ -1,0 +1,27 @@
+name: QA
+
+on: push
+
+jobs:
+  quality_assurance:
+    name: quality_assurance
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Code Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Code Linting
+        if: "!github.event.pull_request.draft"
+        run: npm run lint
+
+      - name: Test
+        if: "!github.event.pull_request.draft"
+        run: npm run test
